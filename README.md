@@ -11,7 +11,7 @@ The algorithm relies on the matrix operators, which can be easily implemented wi
 To perform an example, refer to the Lumped Deep Learning (pdf.) file uploaded. Follow step by step to get the results.
 
 
-# Comparison with Google Tensorfloe Keras
+# Comparison with Google Tensorflow Keras
 The Lumped DNN verifies that given the layers and neurons can only attain 7 training data. If the number of data increases, the error standard deviation shoots up drastically. The resullt is verified using Google Tensorflow Keras.
 ![Comaprison](https://github.com/blackbriar07/Lumped-Deep-Learning/assets/64767006/38ed5665-f376-433e-99b5-7155a86d08e0)
 
