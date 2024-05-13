@@ -1,0 +1,21 @@
+TRAINING = 0;
+if (TRAINING)
+{
+	EtaStart = 0.002;
+	EtaEnd = 0.005;
+	Alpha = 0.1;
+	BetaStart = 0.002;
+	BetaEnd = 0.005;
+	InitWeight = 0.38;
+	file = "../data/DNN2_Case1T.csv";
+	HL = [(17, 17, 17, 17)];
+	LDNN = LumpedDNN(file, HL, false, InitWeight);
+	DY3 = LDNNLumpedLearning(LDNN, EtaStart, EtaEnd, Alpha, BetaStart, BetaEnd, 5, 0.01);
+}
+else
+{
+	file = "../data/DNN2_Case1.csv";
+	HL = [(17, 17, 17, 17)];
+	LDNN = LumpedDNN(file, HL, true, 0);
+	DY3 = LDNNForwardPropagation(LDNN, 22);
+}

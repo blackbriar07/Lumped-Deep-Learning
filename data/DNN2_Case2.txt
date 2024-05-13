@@ -1,0 +1,38 @@
+TRAINING = 0;
+NSize = 17;
+HL = [(NSize, NSize, NSize, NSize)];
+if (TRAINING)
+{
+	EtaStart = 0.002;
+	EtaEnd = 0.005;
+	Alpha = 0.1;
+	BetaStart = 0.002;
+	BetaEnd = 0.005;
+	InitWeight = 0.38;
+	file = "../data/DNN2_Case2T.csv";
+	LDNN = LumpedDNN(file, HL, false, InitWeight);
+	DY3 = LDNNLumpedLearning(LDNN, EtaStart, EtaEnd, Alpha, BetaStart, BetaEnd, 5, 0.01);
+}
+else
+{
+	file = "../data/DNN2_Case2.csv";
+	LDNN = LumpedDNN(file, HL, true, 0);
+	DY3 = LDNNForwardPropagation(LDNN, NSize + 5);
+	file = "../data/DNN2_Case2.csv";
+	W1 = ReadMatrixFromFile(file, "W1"); 
+	W2 = ReadMatrixFromFile(file, "W2");
+	W3 = ReadMatrixFromFile(file, "W3");
+	YD = ReadMatrixFromFile(file, "YD");
+	S = CreateMatrix(NSize, NSize);
+	#show
+	i = 0;
+	while (i < 17)
+	{
+		S[i][i] = YD[i][NSize + 4];
+		i++;
+	}
+	SYMBOSIS = W3 * W2 * W1 * S;
+	#hide
+	SYMBOSIS.PrintToFile("d:/test11.csv");
+}
+
